@@ -1,0 +1,6 @@
+package com.sree.rest.webservices.restfulwebservices;
+
+//to create a new class click [ctrl + n]
+public class User {
+
+}

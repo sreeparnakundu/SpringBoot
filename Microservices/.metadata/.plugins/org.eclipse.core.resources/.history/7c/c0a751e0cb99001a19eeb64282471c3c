@@ -1,0 +1,5 @@
+package com.sree.microservices.currencyexchangeservice;
+
+public class ExchangeValueRepository {
+
+}

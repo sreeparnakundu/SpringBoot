@@ -1,0 +1,5 @@
+package com.sree.rest.webservices.restfulwebservices.config;
+
+public class SwaggerConfig {
+
+}

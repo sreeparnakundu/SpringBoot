@@ -1,0 +1,11 @@
+package com.sree.rest.webservices.restfulwebservices.config;
+
+//Configuration
+//Enable Swagger
+public class SwaggerConfig {
+
+	//Bean - Docket
+		//Swagger2
+		//All the paths
+		//All the apis
+}

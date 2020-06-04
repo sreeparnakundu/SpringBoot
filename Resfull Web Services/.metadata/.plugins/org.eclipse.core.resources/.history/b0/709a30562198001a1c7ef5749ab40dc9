@@ -1,0 +1,8 @@
+package com.sree.rest.webservices.restfulwebservices.user.jpa;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class UserRepository {
+
+}

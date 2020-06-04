@@ -1,0 +1,7 @@
+package com.sree.rest.webservices.restfulwebservices.versioning;
+
+public class Name {
+	private String firstName;
+	private String lastName;
+
+}

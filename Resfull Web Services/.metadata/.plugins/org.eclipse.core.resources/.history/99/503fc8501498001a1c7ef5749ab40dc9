@@ -1,0 +1,20 @@
+# debug, info, trace
+logging.level.org.springframework = info
+
+#it will convert date to timestamp and timestamp to date
+spring.jackson.serialization.write-dates-as-timestamps = false
+
+# Instead of this method, use below property here
+#	@Bean
+#	public ResourceBundleMessageSource messageSource() {
+#		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+#		messageSource.setBasename("messages");
+#		return messageSource;
+#	}
+spring.messages.basename=messages
+
+#for actuator [monitoring purpose]
+management.endpoints.web.exposure.include=*
+
+security.user.name=username
+security.user.password=password

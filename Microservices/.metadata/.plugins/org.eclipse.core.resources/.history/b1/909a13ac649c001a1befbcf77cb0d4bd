@@ -1,0 +1,12 @@
+spring.application.name=limits-service
+
+#limits-service.minimum=99
+#limits-service.maximum=9999
+
+# spring-cloud-config-server URL
+spring.cloud.config.uri=http://localhost:8888
+
+# By default, it'll pick default Git Local Repo -> limis-service properties values
+# If you want to specify dev/qa properties to pick, use below property :
+spring.profiles.active=qa
+

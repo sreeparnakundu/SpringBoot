@@ -1,0 +1,5 @@
+insert into user_table values(1,sysdate(),"sree");
+insert into user_table values(2,sysdate(),"dev");
+insert into user_table values(3,sysdate(),"ranga");
+insert into user_table values(4,sysdate(),"ravi");
+insert into user_table values(5,sysdate(),"lisa");

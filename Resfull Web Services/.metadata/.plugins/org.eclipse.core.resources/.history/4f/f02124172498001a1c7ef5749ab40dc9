@@ -1,0 +1,5 @@
+package com.sree.rest.webservices.restfulwebservices.user.jpa;
+
+public class Post {
+
+}

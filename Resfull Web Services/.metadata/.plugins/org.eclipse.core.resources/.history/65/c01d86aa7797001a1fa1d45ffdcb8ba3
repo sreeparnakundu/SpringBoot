@@ -1,0 +1,40 @@
+package com.sree.rest.webservices.restfulwebservices.exception;
+
+import java.util.Date;
+
+public class ExceptionResponse {
+	//timestamp
+	//message
+	//detail
+	
+	private Date timestamp;
+	private String message;
+	private String etails;
+	
+	public ExceptionResponse(Date timestamp, String message, String etails) {
+		super();
+		this.timestamp = timestamp;
+		this.message = message;
+		this.etails = etails;
+	}
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public String getEtails() {
+		return etails;
+	}
+	public void setEtails(String etails) {
+		this.etails = etails;
+	}
+	
+	
+}

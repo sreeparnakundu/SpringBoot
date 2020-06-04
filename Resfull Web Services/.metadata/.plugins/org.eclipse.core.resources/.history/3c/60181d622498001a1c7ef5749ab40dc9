@@ -1,0 +1,11 @@
+package com.sree.rest.webservices.restfulwebservices.user.jpa;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Post {
+	private Integer id;
+	private String description;
+	private UserJPA user;
+
+}

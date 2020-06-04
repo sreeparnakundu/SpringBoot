@@ -1,0 +1,13 @@
+package com.sree.rest.webservices.restfulwebservices;
+
+import java.util.Date;
+
+//to create a new class click [ctrl + n]
+public class User {
+
+	private Integer id;
+	private String name;
+	private Date birthDate;
+	
+	
+}

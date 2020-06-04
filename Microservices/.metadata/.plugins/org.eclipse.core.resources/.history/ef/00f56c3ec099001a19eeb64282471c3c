@@ -1,0 +1,21 @@
+package com.sree.microservices.currencyexchangeservice;
+
+import java.math.BigDecimal;
+
+public class ExchangeValue {
+
+	private int id;
+	private String from;
+	private String to;
+	private BigDecimal conversionMultiple;
+	
+	public ExchangeValue(int id, String from, String to, BigDecimal conversionMultiple) {
+		super();
+		this.id = id;
+		this.from = from;
+		this.to = to;
+		this.conversionMultiple = conversionMultiple;
+	}
+	
+	
+}

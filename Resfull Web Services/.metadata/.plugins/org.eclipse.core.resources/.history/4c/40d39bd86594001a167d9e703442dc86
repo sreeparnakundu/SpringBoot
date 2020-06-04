@@ -1,0 +1,4 @@
+logging.level.org.springframework = info
+
+#it will convert date to timestamp and timestamp to date
+spring.jackson.serialization.write-dates-as-timestamps = false

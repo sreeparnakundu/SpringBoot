@@ -1,0 +1,223 @@
+# Read Me First
+The following was discovered as part of building this project:
+
+* The original package name 'com.sree.rest.webservices.restful-web-services' is invalid and this project uses 'com.sree.rest.webservices.restfulwebservices' instead.
+
+# Getting Started
+
+### Reference Documentation
+For further reference, please consider the following sections:
+
+* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
+* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/maven-plugin/reference/html/)
+* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/maven-plugin/reference/html/#build-image)
+* [Spring Web](https://docs.spring.io/spring-boot/docs/2.2.7.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
+* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.2.7.RELEASE/reference/htmlsingle/#using-boot-devtools)
+* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.2.7.RELEASE/reference/htmlsingle/#boot-features-jpa-and-spring-data)
+
+### Guides
+The following guides illustrate how to use some features concretely:
+
+* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
+* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
+* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
+* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
+
+# MY NOTES :-
+
+## WhiteLabel Error Page
+========================================================================
+No converter found for return value of type: class com.deb.rest.webservices.restfulwebservices.HelloWorldBean
+
+* If there is no getter method found in HelloWorldBean class. Then, this error comes.
+
+
+## Http Response [Status] Abstract Class
+==========================================================================
+ResponseEntityExceptionHandler Abstract class r modhye Response Structure ta declare kora ache, e.g. -> 
+(je kono rokm exception r jonno ki type status pathabe, seta ei class e decide kora ache)
+SERVICE_UNAVAILABLE, NOT_FOUND
+
+Example of an Response Structure, when a resource is not found :
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"timestamp": "2020-05-16T11:41:10.749+00:00",
+"status": 404,
+"error": "Not Found",
+"message": "id- 5454",
+"path": "/users/5454"
+
+NOTE :: amra customized structure er response o pathate pari. takhon ai abstract class take extend korte hbe.
+e.g -> public class customizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler
+
+## @ControllerAdvice
+============================================================================
+When we want to share things across different Controllers, then go for @ControllerAdvice annotation. 
+[Specialization of {@link Component @Component} for classes that declare
+ * {@link ExceptionHandler @ExceptionHandler}, {@link InitBinder @InitBinder}, or
+ * {@link ModelAttribute @ModelAttribute} methods to be shared across
+ * multiple {@code @Controller} classes.]
+ 
+NOTE ::
+@ExceptionHandler = for Exception Handling
+@InitBinder = for Date declaration
+@ModelAttribute = common Model Attributes
+
+
+## @ExceptionHandler(Exception.class)
+=============================================================================
+@ExceptionHandler(Exception.class)
+public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) {	}
+
+NOTE :: jokhn kono exception asbe Exception class er takhon handleAllException() ai method ta ota handle korbe.
+
+
+## static Package import
+==============================================================================
+e.g. : import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
+
+Doing this will give us the priviledge to access the methods of ControllerLinkBuilder without using the ControllerLinkBuilder at first,
+like ControllerLinkBuilder.linkTo()
+So, we can directly use linkTo() method in classes, where static import is done
+
+## to create a new class click [ctrl + n]
+## click [ctrl + 1] --> to create a class, constructor directly 
+##click [ctrl + 1] from the top package import --> to move a class to a package.
+
+
+# Internationalization (I18N)
+************************************************************************
+To make our response international, so that Locale/Country wise our response will be different :
+
+japan : "Ohio" (Good Morning)
+France : "Bonzour" (Good Morning)
+UK/US : "Good Morning"
+
+### Configuration
+=================
+- Locale Resolver
+	- Default Locale - Locale.US
+- ResourceBundleMessageSource
+
+### Usage
+=========
+- Autowire MessageSource
+- @RequestHeader(value = "Accept-Language", required = false) Locale locale
+- messageSource.getMessage("helloWorld.message", null, locale)
+
+# How to accept XML ?
+===========================
+Only Add jackson-dataformat-xml dependency in the pom.xml
+
+<dependency>
+	<groupId>com.fasterxml.jackson.dataformat</groupId>
+	<artifactId>jackson-dataformat-xml</artifactId>
+</dependency>
+
+# Swagger
+==========================================================================
+http://localhost:8080/swagger-ui.html
+http://localhost:8080/v2/api-docs
+
+#Monitoring
+===========================================================================
+http://localhost:8080/actuator
+
+<!-- For monitoring purpose, Actuator dependency is needed -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		
+To enter HAL Browser ==> http://localhost:8080/      ==>there in Explorer section  type /actuator
+<!-- To see the monitoring data in browser 
+	HAL : Hypertext Application Language
+	how to hyperlink between resources in your API  -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-browser</artifactId>
+		</dependency>
+		
+#Filtering ::  Ignore properties in Response, e.g. -> DO NOT Send Password
+================================================================================================
+
+NOTE :: either use Approach 1 or Approach 2, not both at same time. These two are also called Static filtering.
+
+Approach 1 : Static Filtering
+------------------------------------
+If we don't want to send some field in response, we'll use @JsonIgnoreProperties at class level
+
+e.g - @JsonIgnoreProperties(value= {"field1","field2"})
+		public class SomeBean { }
+
+Approach 2 : --> (better approach) : Static Filtering
+------------------------------------------------------
+If we don't want to send some field in response, we'll use @JsonIgnore at variable level
+
+e.g - @JsonIgnore
+	  private String field3;
+	  
+Approach 3 : --> Best Approach : Dynamic Filtering
+--------------------------------------------------
+For some request, send field1 & field2. for some other request send, field2 & field3
+
+
+# Versioning
+===================================================================================================
+- Media type versioning(a. k. a. "content negotiation" or "accept header")
+	- GitHub
+- (Custom) headers versioning
+	- Microsoft
+- URI Versioning
+	- Twitter
+- Request Parameter versioning
+	- Amazon
+-Factors
+	-URI Pollution
+	-Misuse of HTTP Headers
+	-Caching
+	-Can we execute the request on the browser?
+	-API Documentation
+-No Perfect Solution
+
+NOTE ::
+-------
+There are 4 types of API versioning available in code :
+please check PersonVersioningController class for ref
+
+1.  Basic Versioning --> URI Versioning
+2.  Advance Versioning using request param --> Request Parameter Versioning
+3.	Advance Versioning using header Param --> Header versioning
+4.  Advance Versioning using produces, also called Content Negotiation or Accept versioning (OR) MIME Type Versioning
+
+Pros & Cons of Above 4 types of versioning ::
+---------------------------------------------
+1. first two => not easy to cache, not easy for END user : need to have tech knowledge to send header, API documentation is not easy.
+2. last two => URI gets polluted, directly can be hit from browser, easily cachable, API documentation is easy
+
+# SpringBoot Basic Authentication ::
+==============================================
+just need to add below dependency :
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+Default ::
+----------
+	Basic Auth userId : user
+	Passwd : Take latest Password from Console
+
+Customized ::
+--------------
+Add below two line in application.properties
+	spring.security.user.name=username
+	spring.security.user.password=password
+	
+# H2 DB Config ::
+======================
+console Link --> http://localhost:8080/h2-console
+Add below in application.properties :
+
+	spring.datasource.url=jdbc:h2:mem:testdb
+	spring.jpa.show-sql=true
+	spring.h2.console.enabled=true

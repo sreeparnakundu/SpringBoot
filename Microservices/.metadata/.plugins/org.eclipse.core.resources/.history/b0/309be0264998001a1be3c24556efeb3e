@@ -1,0 +1,8 @@
+package com.sree.microservices.limitsservice;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Configuration {
+
+}

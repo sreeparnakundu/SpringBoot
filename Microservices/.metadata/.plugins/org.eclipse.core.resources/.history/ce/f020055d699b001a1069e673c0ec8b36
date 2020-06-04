@@ -1,0 +1,10 @@
+package com.sree.microservices.netflixzuulapigatewayserver;
+
+import org.springframework.stereotype.Component;
+
+import com.netflix.zuul.ZuulFilter;
+
+@Component
+public class ZuulLogingFilter extends ZuulFilter{
+
+}

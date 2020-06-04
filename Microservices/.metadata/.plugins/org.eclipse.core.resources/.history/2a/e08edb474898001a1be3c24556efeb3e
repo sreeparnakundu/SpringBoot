@@ -1,0 +1,5 @@
+package com.sree.microservices.limitsservice.bean;
+
+public class LimitConfiguration {
+
+}

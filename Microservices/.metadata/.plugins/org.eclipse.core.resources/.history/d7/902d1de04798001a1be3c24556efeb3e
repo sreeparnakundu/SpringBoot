@@ -1,0 +1,6 @@
+package com.sree.microservices.limitsservice;
+
+
+public class LimitsConfigurationController {
+
+}

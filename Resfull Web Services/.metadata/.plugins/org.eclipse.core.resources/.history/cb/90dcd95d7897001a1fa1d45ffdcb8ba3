@@ -1,0 +1,35 @@
+package com.sree.rest.webservices.restfulwebservices.exception;
+
+
+import java.util.Date;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+@ControllerAdvice
+@RestController
+public class customizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+	
+	/**
+	 * The Response structure we'll receive, try to get unknown Resources
+	 * GET : http://localhost:8080/users/5454
+	 * 
+	 * {
+     * 		"timestamp": "2020-05-16T13:16:35.215+00:00",
+     * 		"message": "id- 5454",
+     * 		"details": "uri=/users/5454"
+	 *	}
+	 * 
+	 */
+	//@ExceptionHandler(Exception.class)
+	public final ResponseEntity<Object> handlException(Exception ex, WebRequest request) {
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+		return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+}

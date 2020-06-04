@@ -1,0 +1,5 @@
+package com.sree.rest.webservices.restfulwebservices;
+
+public class HelloWorldBean {
+
+}

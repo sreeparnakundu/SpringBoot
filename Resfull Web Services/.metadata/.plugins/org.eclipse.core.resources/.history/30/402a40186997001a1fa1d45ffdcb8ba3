@@ -1,0 +1,5 @@
+package com.sree.rest.webservices.restfulwebservices.user;
+
+public class UserNotFoundException extends RuntimeException {
+
+}
